@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Text.Encodings.Web;
 using System.Threading;
@@ -26,6 +27,7 @@ namespace Topic_1_5_Assignment
         bool squidSleeping = true, caughtGary = false, patrickFalling = false;
         SpriteFont textFont;
         Screen screen; // This variable will keep track of what screen/level we are on
+        Song song;
 
         MouseState mouseState;
         MouseState prevMouseState;
@@ -102,6 +104,12 @@ namespace Topic_1_5_Assignment
             patrickFallenTexture = Content.Load<Texture2D>("PatrickFallen");
 
             textFont = Content.Load<SpriteFont>("Text");
+
+            this.song = Content.Load<Song>("spongebobMusic");
+            MediaPlayer.Play(song);
+            //  Uncomment the following line will also loop the song
+            MediaPlayer.IsRepeating = true;
+            
         }
 
         protected override void Update(GameTime gameTime)

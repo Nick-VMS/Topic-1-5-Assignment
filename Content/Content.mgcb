@@ -145,6 +145,12 @@
 /processorParam:TextureFormat=Color
 /build:SpongebobHouse.png
 
+#begin spongebobMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:spongebobMusic.mp3
+
 #begin SpongebobNeighbourhood.png
 /importer:TextureImporter
 /processor:TextureProcessor
