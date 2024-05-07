@@ -9,6 +9,7 @@ namespace Topic_1_5_Assignment
 {
     public class Game1 : Game
     {
+        // Nick
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
