@@ -143,27 +143,8 @@ namespace Topic_1_5_Assignment
             }
             else if (screen == Screen.PatrickHouse)
             {
-
-                if (mouseState.LeftButton == ButtonState.Pressed && backgroundRect.Contains(mouseState.Position))
-                {
-                    if (rockRotation > -1f)
-                    {
-                        rockRotation -= 0.005f;
-                    }
-                }
-                else if (rockRotation < -1f)
-                {
-                    patrickFalling = true;
-                    if (patrickFalling && patrickFallingRect.Y > 250)
-                    {
-                        patrickFalling = false;
-                    }
-                    else
-                    {
-                        patrickFallingRect.X += (int)patrickFallingSpeed.X;
-                        patrickFallingRect.Y += (int)patrickFallingSpeed.Y;
-                    }
-                }
+                PatrickScreenUpdate(gameTime, mouseState);
+               
             }
 
             //BackArrow to return to the intro screen
@@ -200,19 +181,7 @@ namespace Topic_1_5_Assignment
             //Patricks House
             else if (screen == Screen.PatrickHouse)
             {
-                _spriteBatch.Draw(patrickHouseTexture, backgroundRect, Color.White);
-                if (patrickFalling)
-                {
-                    _spriteBatch.Draw(patrickFallingTexture, patrickFallingRect, Color.White);
-                }
-                else if (!patrickFalling && patrickFallingRect.Y > 250)
-                {
-                    _spriteBatch.Draw(patrickFallenTexture, patrickFallenRect, Color.White);
-
-                }
-
-                _spriteBatch.Draw(patrickRockTexture, rockRect, null, Color.White, rockRotation, new Vector2(0, patrickRockTexture.Height), SpriteEffects.None, 0f);
-                _spriteBatch.Draw(backArrowTexture, backArrowRect, Color.White);
+                PatrickDrawUpdate(gameTime, mouseState);
             }
 
             _spriteBatch.Draw(cursorTexture, cursorRect, Color.White);
@@ -262,7 +231,7 @@ namespace Topic_1_5_Assignment
                 {
                     screen = Screen.SpongebobHouse;
                     
-                    //Resets evreything
+                    //Resets everything
                     seconds = 2;
                     garyRect = new Rectangle(100, 375, 150, 100);
                     spongebobRect = new Rectangle(600, 275, 150, 200);
@@ -327,13 +296,38 @@ namespace Topic_1_5_Assignment
 
         }
 
-        
+        public void PatrickScreenUpdate(GameTime gameTime, MouseState mouseState)
+        {
+            if (mouseState.LeftButton == ButtonState.Pressed && backgroundRect.Contains(mouseState.Position))
+            {
+                if (rockRotation > -1f)
+                {
+                    rockRotation -= 0.005f;
+                }
+            }
+            else if (rockRotation < -1f)
+            {
+                patrickFalling = true;
+                if (patrickFalling && patrickFallingRect.Y > 250)
+                {
+                    patrickFalling = false;
+                }
+                else
+                {
+                    patrickFallingRect.X += (int)patrickFallingSpeed.X;
+                    patrickFallingRect.Y += (int)patrickFallingSpeed.Y;
+                }
+            }
+        }
 
         public void SquidDrawUpdate(GameTime gameTime, MouseState mouseState)
         {
+           
             //Drawing the background
             _spriteBatch.Draw(squidwardHouseTexture, backgroundRect, Color.White);
             _spriteBatch.Draw(backArrowTexture, backArrowRect, Color.White);
+            //Text instructions
+            _spriteBatch.DrawString(textFont, "Click on SquidWard to wake him up", new Vector2(100, 40), Color.White);
             //When he is sleeping (unclicked by user)
             if (squidSleeping)
             {
@@ -343,22 +337,43 @@ namespace Topic_1_5_Assignment
             else if (!squidSleeping)
             {
                 _spriteBatch.Draw(SquidwardAngryTexture, squidwardRect, Color.White);
-                _spriteBatch.DrawString(textFont, "GET OUT!!", new Vector2(450, 275), Color.Black);
+                _spriteBatch.DrawString(textFont, "GET OUT!!", new Vector2(450, 275), Color.White);
                 _spriteBatch.Draw(clarinetTexture, clarinetRect, null, Color.White, clarinetRotation, new Vector2(clarinetTexture.Width/2, clarinetTexture.Height/2), SpriteEffects.None, 0f);
             }
         }
 
         public void SpongeDrawUpdate(GameTime gameTime, MouseState mouseState)
         {
+            //Drawing the background
             _spriteBatch.Draw(spongebobHouseTexture, backgroundRect, Color.White);
             _spriteBatch.Draw(backArrowTexture, backArrowRect, Color.White);
+
             _spriteBatch.Draw(garyTexture, garyRect, Color.White);
             _spriteBatch.Draw(spongebobTexture, spongebobRect, Color.White);
             if (caughtGary)
             {
-                _spriteBatch.DrawString(textFont, "Caught You!", new Vector2(spongebobRect.X, spongebobRect.Y), Color.White);
+                _spriteBatch.DrawString(textFont, "Caught You!", new Vector2(spongebobRect.X-200, spongebobRect.Y), Color.White);
             }
 
+        }
+
+        public void PatrickDrawUpdate(GameTime gameTime, MouseState mouseState)
+        {
+            //Drawing the background
+            _spriteBatch.Draw(patrickHouseTexture, backgroundRect, Color.White);
+            //Text instructions
+            _spriteBatch.DrawString(textFont, "Hold on the house until it opens fully.", new Vector2(100, 40), Color.White);
+            if (patrickFalling)
+            {
+                _spriteBatch.Draw(patrickFallingTexture, patrickFallingRect, Color.White);
+            }
+            else if (!patrickFalling && patrickFallingRect.Y > 250)
+            {
+                _spriteBatch.Draw(patrickFallenTexture, patrickFallenRect, Color.White);
+
+            }
+            _spriteBatch.Draw(patrickRockTexture, rockRect, null, Color.White, rockRotation, new Vector2(0, patrickRockTexture.Height), SpriteEffects.None, 0f);
+            _spriteBatch.Draw(backArrowTexture, backArrowRect, Color.White);
         }
     }
 }
