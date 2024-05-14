@@ -25,7 +25,7 @@ namespace Topic_1_5_Assignment
             backArrowRect, squidwardRect, clarinetRect, cursorRect, garyRect, spongebobRect, rockRect, patrickFallingRect, patrickFallenRect;
         float seconds;
         bool squidSleeping = true, caughtGary = false, patrickFalling = false;
-        SpriteFont textFont;
+        SpriteFont superSeniorFont;
         Screen screen; // This variable will keep track of what screen/level we are on
         Song song;
 
@@ -103,7 +103,7 @@ namespace Topic_1_5_Assignment
             patrickFallingTexture = Content.Load<Texture2D>("PatrickFalling");
             patrickFallenTexture = Content.Load<Texture2D>("PatrickFallen");
 
-            textFont = Content.Load<SpriteFont>("Text");
+            superSeniorFont = Content.Load<SpriteFont>("SuperSenior");
 
             this.song = Content.Load<Song>("spongebobMusic");
             MediaPlayer.Play(song);
@@ -327,7 +327,7 @@ namespace Topic_1_5_Assignment
             _spriteBatch.Draw(squidwardHouseTexture, backgroundRect, Color.White);
             _spriteBatch.Draw(backArrowTexture, backArrowRect, Color.White);
             //Text instructions
-            _spriteBatch.DrawString(textFont, "Click on SquidWard to wake him up", new Vector2(100, 40), Color.White);
+            _spriteBatch.DrawString(superSeniorFont, "Click on SquidWard to wake him up", new Vector2(100, 40), Color.White);
             //When he is sleeping (unclicked by user)
             if (squidSleeping)
             {
@@ -337,7 +337,7 @@ namespace Topic_1_5_Assignment
             else if (!squidSleeping)
             {
                 _spriteBatch.Draw(SquidwardAngryTexture, squidwardRect, Color.White);
-                _spriteBatch.DrawString(textFont, "GET OUT!!", new Vector2(450, 275), Color.White);
+                _spriteBatch.DrawString(superSeniorFont, "GET OUT!!", new Vector2(450, 275), Color.White);
                 _spriteBatch.Draw(clarinetTexture, clarinetRect, null, Color.White, clarinetRotation, new Vector2(clarinetTexture.Width/2, clarinetTexture.Height/2), SpriteEffects.None, 0f);
             }
         }
@@ -352,7 +352,7 @@ namespace Topic_1_5_Assignment
             _spriteBatch.Draw(spongebobTexture, spongebobRect, Color.White);
             if (caughtGary)
             {
-                _spriteBatch.DrawString(textFont, "Caught You!", new Vector2(spongebobRect.X-200, spongebobRect.Y), Color.White);
+                _spriteBatch.DrawString(superSeniorFont, "Caught You!", new Vector2(spongebobRect.X-200, spongebobRect.Y), Color.White);
             }
 
         }
@@ -362,7 +362,7 @@ namespace Topic_1_5_Assignment
             //Drawing the background
             _spriteBatch.Draw(patrickHouseTexture, backgroundRect, Color.White);
             //Text instructions
-            _spriteBatch.DrawString(textFont, "Hold on the house until it opens fully.", new Vector2(100, 40), Color.White);
+            _spriteBatch.DrawString(superSeniorFont, "Hold on the house until it opens fully.", new Vector2(100, 40), Color.White);
             if (patrickFalling)
             {
                 _spriteBatch.Draw(patrickFallingTexture, patrickFallingRect, Color.White);

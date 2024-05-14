@@ -211,10 +211,13 @@
 /processorParam:TextureFormat=Color
 /build:SquidwardSleeping.png
 
-#begin Text.spritefont
+#begin Super Senior Personal Use.ttf
+/copy:Super Senior Personal Use.ttf
+
+#begin SuperSenior.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Text.spritefont
+/build:SuperSenior.spritefont
 
