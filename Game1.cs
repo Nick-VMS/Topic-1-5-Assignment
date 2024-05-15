@@ -165,6 +165,7 @@ namespace Topic_1_5_Assignment
             if (screen == Screen.Intro)
             {
                 _spriteBatch.Draw(bikiniBottomTexture, backgroundRect, Color.White);
+                _spriteBatch.DrawString(superSeniorFont, "Click on the houses to enter them", new Vector2(0,0), Color.White);
                 _spriteBatch.Draw(jellyFishTexture, jellyFishOneRect, Color.White);
                 _spriteBatch.Draw(jellyFishTexture, jellyFishTwoRect, Color.White);
             }
